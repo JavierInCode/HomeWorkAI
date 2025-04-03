@@ -1,24 +1,29 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
-
 document.querySelector('#app').innerHTML = `
   <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
+    <h1>HomeWork AI</h1>
+    <video id="video" autoplay></video>
+    <div>
+    <form>
+  <label for="cars">Elige Tu Curso:</label>
+  <select name="curso" id="curso">
+    <option value="4primaria">4° Primaria</option>
+    <option value="5primaria">5° Primaria</option>
+    <option value="6primaria">6° Primaria</option>
+    <option value="1eso">1° ESO</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Resolver Tarea">
+</form>
     </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
   </div>
-`
+`;
 
-setupCounter(document.querySelector('#counter'))
+navigator.mediaDevices.getUserMedia({
+  video: { facingMode: { exact: "environment" } }
+})
+.then(stream => {
+  document.getElementById('video').srcObject = stream;
+})
+.catch(error => {
+  console.error("Could not access the back camera:", error);
+});
